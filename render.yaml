@@ -13,9 +13,6 @@ services:
       CLIPProcessor.from_pretrained('openai/clip-vit-base-patch32')"
     startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
-      # Pin Python to match local dev
-      - key: PYTHON_VERSION
-        value: 3.11.9
       # Keep the HF model cache inside the project dir so the build-time
       # download persists into the running service
       - key: HF_HOME

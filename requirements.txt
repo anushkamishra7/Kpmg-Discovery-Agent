@@ -11,8 +11,9 @@ httpx==0.28.1
 pinecone==5.4.2
 
 # CLIP embedder
-torch==2.5.1
-transformers==4.47.1
+# +cpu forces the CPU wheel from the index above (Python 3.13 compatible)
+torch==2.12.1+cpu
+transformers>=4.47
 pillow==11.0.0
 
 # Optional Postgres/pgvector path (db/, services/database.py)
