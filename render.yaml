@@ -1,12 +1,25 @@
 services:
   - type: web
     name: kpmg-discoverability-agent
-    runtime: docker
-    dockerfilePath: ./Dockerfile
+    runtime: python
     plan: standard          # 2 GB RAM — needed for torch + CLIP (free/starter 512MB will OOM)
     region: oregon
     healthCheckPath: /health
+    # Pre-download CLIP at build time so first request doesn't time out
+    buildCommand: >-
+      pip install -r requirements.txt &&
+      python -c "from transformers import CLIPModel, CLIPProcessor;
+      CLIPModel.from_pretrained('openai/clip-vit-base-patch32');
+      CLIPProcessor.from_pretrained('openai/clip-vit-base-patch32')"
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
+      # Pin Python to match local dev
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      # Keep the HF model cache inside the project dir so the build-time
+      # download persists into the running service
+      - key: HF_HOME
+        value: /opt/render/project/src/.hf_cache
       - key: PINECONE_API_KEY
         sync: false
       - key: PINECONE_INDEX
