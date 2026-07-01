@@ -1,0 +1,11 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.env
+.DS_Store
+.pytest_cache/
+*.egg-info/
+
+# 156MB 3D source asset — over GitHub's 100MB limit, not used by the deployed app
+models/scene.bin

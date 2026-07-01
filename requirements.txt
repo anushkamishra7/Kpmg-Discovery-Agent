@@ -1,0 +1,23 @@
+# Install CPU-only torch wheels (Render has no GPU; avoids ~2GB CUDA download)
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+pydantic==2.10.4
+python-dotenv==1.0.1
+httpx==0.28.1
+
+# Vector DB
+pinecone==5.4.2
+
+# CLIP embedder
+torch==2.5.1
+transformers==4.47.1
+pillow==11.0.0
+
+# Optional Postgres/pgvector path (db/, services/database.py)
+psycopg2-binary==2.9.10
+pgvector==0.3.6
+
+# SQLite queue helper (agents/)
+sqlite-utils==3.38

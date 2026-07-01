@@ -1,0 +1,37 @@
+services:
+  - type: web
+    name: kpmg-discoverability-agent
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: standard          # 2 GB RAM — needed for torch + CLIP (free/starter 512MB will OOM)
+    region: oregon
+    healthCheckPath: /health
+    envVars:
+      - key: PINECONE_API_KEY
+        sync: false
+      - key: PINECONE_INDEX
+        sync: false
+      - key: PINECONE_NAMESPACE
+        sync: false
+      - key: PINECONE_CLOUD
+        sync: false
+      - key: PINECONE_REGION
+        sync: false
+      - key: AEM_BASE_URL
+        sync: false
+      - key: AEM_BEARER_TOKEN
+        sync: false
+      - key: AEM_AUTH_TYPE
+        sync: false
+      - key: AEM_DAM_PATH
+        sync: false
+      - key: CLIP_MODEL_ID
+        sync: false
+      - key: EMBED_DIM
+        sync: false
+      - key: CLIENT
+        sync: false
+      - key: BATCH_SIZE
+        sync: false
+      - key: N_WORKERS
+        sync: false

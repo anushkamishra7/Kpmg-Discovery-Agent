@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Sora", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  --color-studio-50: #faf7f2;
+  --color-studio-100: #f3ede2;
+  --color-studio-200: #e4d8c5;
+  --color-studio-900: #1c1815;
+  --color-ember-500: #b5651d;
+  --color-ember-600: #95501a;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
